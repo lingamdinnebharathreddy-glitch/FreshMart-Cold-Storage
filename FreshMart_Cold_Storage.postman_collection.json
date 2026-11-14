@@ -1,0 +1,235 @@
+{
+  "info": {
+    "name": "FreshMart Cold Storage API",
+    "description": "Postman Collection for FreshMart Cold Storage backend meeting all faculty requirements.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Root",
+      "item": [
+        {
+          "name": "Health Check (GET /)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shelves",
+      "item": [
+        {
+          "name": "1. GET All Active Shelves",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves"]
+            }
+          }
+        },
+        {
+          "name": "2. Search Shelves by Temperature (?temperature=-20)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves?temperature=-20",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves"],
+              "query": [
+                {
+                  "key": "temperature",
+                  "value": "-20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. Search Shelves by Max Temperature (?max_temp=4)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves?max_temp=4",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves"],
+              "query": [
+                {
+                  "key": "max_temp",
+                  "value": "4"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. GET Shelf by ID (Success - ID 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves", "1"]
+            }
+          }
+        },
+        {
+          "name": "5. GET Shelf by ID (404 - Soft-Deleted Shelf ID 5)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves/5",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves", "5"]
+            }
+          }
+        },
+        {
+          "name": "6. POST Create Shelf (Success)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bakery Cold Unit G\",\n  \"temperature\": 5.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shelves",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves"]
+            }
+          }
+        },
+        {
+          "name": "7. POST Create Shelf (400 - Validation: Empty Name)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"   \",\n  \"temperature\": 5.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shelves",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves"]
+            }
+          }
+        },
+        {
+          "name": "8. POST Create Shelf (400 - Validation: Invalid Temperature)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Beverage Chiller\",\n  \"temperature\": \"cold\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shelves",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves"]
+            }
+          }
+        },
+        {
+          "name": "9. PUT Update Shelf (Success - ID 1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Deep Freeze Zone A - Calibrated\",\n  \"temperature\": -22.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shelves/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves", "1"]
+            }
+          }
+        },
+        {
+          "name": "10. DELETE Soft-Delete Shelf (Success - ID 1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves", "1"]
+            }
+          }
+        },
+        {
+          "name": "11. POST Restore Shelf (Success - ID 1)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shelves/1/restore",
+              "host": ["{{baseUrl}}"],
+              "path": ["shelves", "1", "restore"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leases",
+      "item": [
+        {
+          "name": "1. GET All Leases (SQL JOIN: Leases + Vendors + Shelves)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/leases",
+              "host": ["{{baseUrl}}"],
+              "path": ["leases"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
