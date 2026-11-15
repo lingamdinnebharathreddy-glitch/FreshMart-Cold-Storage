@@ -179,3 +179,30 @@ Import the file [FreshMart_Cold_Storage.postman_collection.json](file:///c:/User
 - 400 validation error cases
 - 404 deleted shelf access case
 - SQL JOIN lease query
+
+## Team Members and Individual Responsibilities
+
+| S.No. | Student Name | Registration Number | Individual Contribution |
+|---|---|---|---|
+| 1 | L. Bharath Kumar Reddy | 252U1R8047 | Express server setup and API integration |
+| 2 | V. Vaheed Basha | 252U1R8097 | SQLite database design, connection, schema and relationships |
+| 3 | P. Bhanu Prakash | 252U1R8070 | Shelf REST CRUD APIs and Lease JOIN endpoint |
+| 4 | T. Rekha Sri | 252U1R8094 | Input validation, temperature search, soft delete and restore |
+
+## Project Links
+
+- **GitHub Repository:** https://github.com/lingamdinnebharathreddy-glitch/FreshMart-Cold-Storage
+- **Live Application (Render):** https://freshmart-cold-storage-1.onrender.com
+
+## Project Information
+
+**Project:** FreshMart Cold Storage Management System
+
+**Technology Stack:** Node.js, Express.js, SQLite
+
+**Subject:** Backend Development Fundamentals
+
+**Class & Section:** 204 & S13
+
+**Assessment:** Group Assignment
+
